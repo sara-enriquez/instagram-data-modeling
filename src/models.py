@@ -39,6 +39,14 @@ class Media(Base):
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship(Post)
 
+class Follower(Base):
+    __tablename__ = 'follower'
+    id = Column(Integer, primary_key=True)
+    user_to_id = Column(Integer, ForeignKey('user.id'))
+    to_id = relationship(User)
+    user_from_id = Column(Integer, ForeignKey('user.id'))
+    from_id = relationship(User)
+
 try:
     result = render_er(Base, 'diagram.png')
     print("Success! Check the diagram.png file")
